@@ -30,8 +30,9 @@ const Faq = () => {
     const [selected, setSelected] = useState(null);
 
     const configuration = new Configuration({
-        apiKey: process.env.OpenAIApi ,
+        apiKey: import.meta.env.VITE_OpenAIApi,
       });
+
       const openai = new OpenAIApi(configuration);
     
       const [prompt, setPrompt] = useState("");
