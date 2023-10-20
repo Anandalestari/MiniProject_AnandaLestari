@@ -30,7 +30,7 @@ const Faq = () => {
     const [selected, setSelected] = useState(null);
 
     const configuration = new Configuration({
-        apiKey: "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",
+        apiKey: process.env.OpenAIApi ,
       });
       const openai = new OpenAIApi(configuration);
     
