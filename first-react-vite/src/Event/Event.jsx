@@ -2,18 +2,27 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from '../Event/Card';
 import { BiUserCircle } from 'react-icons/bi';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Event() {
 
-    const [data, setData] = useState([]);
+    const [productList, setProductList] = useState([]);
 
     useEffect(() => {
-        
-        axios.get("https://651d65a444e393af2d59b1a5.mockapi.io/webinar").then((response) => {
-          setData(response.data);
-        });
-      }, []);
+        axios.get('https://651d65a444e393af2d59b1a5.mockapi.io/webinar')
+          .then((response) => {
+            const data = response.data;
+            console.log("Data dari API:", data);
+      
+            const sortedData = data.sort((a, b) => new Date(a.Tanggal) - new Date(b.Tanggal));
+            console.log("Data yang diurutkan:", sortedData);
+      
+            setProductList(sortedData);
+          })
+          .catch((error) => {
+            console.error('Gagal mengambil data:', error);
+          });
+      }, []);     
    
   return (
     <>
@@ -35,12 +44,12 @@ function Event() {
         <div className="h-screen">
             <h2 className="text-4xl text-black font-bold text-center mt-14 mb-14 ml-14 mr-14 ">List Event</h2>
             <div className="flex flex-wrap ml-10">
-                {data.map((item) => (
-                    <Card
-                    key={item.id}
-                    item={item}
-                    />
-                ))}
+            {productList.map((item) => (
+                <Card
+                key={item.id}
+                item={item}
+                />
+            ))}
             </div>
             
         </div>
