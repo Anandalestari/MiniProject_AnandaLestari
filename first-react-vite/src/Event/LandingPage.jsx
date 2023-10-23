@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BiLogoInstagram, BiLogoTelegram, BiLogoWhatsapp, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineUser } from 'react-icons/ai';
 
