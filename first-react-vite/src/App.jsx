@@ -20,9 +20,9 @@ function Routing() {
           <Route path="/daftar" exact element={<Daftar />} />
           <Route path="/faq" exact element={<Faq />} />
           <Route path="/about" exact element={<About />} />
-          <Route path="/login" exact element={<Login/>}/>
-          <Route path="/create" exact element={<Create/>}/>
-          <Route path="/pendaftar" exact element={<Pendaftar/>}/>
+          <Route path="/admin/login" exact element={<Login/>}/>
+          <Route path="/admin/create" exact element={<Create/>}/>
+          <Route path="/admin/pendaftar" exact element={<Pendaftar/>}/>
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
 
 const Card = ({ item, onClick }) => {
 
@@ -31,14 +30,12 @@ const Card = ({ item, onClick }) => {
           >
             Read More
           </button>
-          <Link to="/daftar">
           <button
             className="text-white bg-blue-500 hover:bg-blue-600 focus:outline-none border-none mx-2"
             onClick={onClick}
           >
             Daftar
           </button>
-          </Link>
         </div>
       </div>
       {showPopup && (

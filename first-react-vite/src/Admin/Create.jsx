@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { BiArrowBack, BiArrowToLeft, BiFile } from 'react-icons/bi';
 import { FiUsers } from 'react-icons/fi';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Create () {
   
   const navigate = useNavigate();
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [selectedProductToDelete, setSelectedProductToDelete] = useState(null);
+  const [isSuccessUpdatePopupOpen, setIsSuccessUpdatePopupOpen] = useState(false);
+
   const isLoggedIn = localStorage.getItem('isLoggedIn');
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/login');
+      navigate('/admin/login');
     }
   }, [isLoggedIn, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
-    navigate('/login'); 
+    navigate('/admin/login'); 
   };
   
   const [formData, setFormData] = useState({
@@ -66,6 +71,7 @@ function Create () {
             Pemateri: "",
             Tanggal: "",
           });
+          setIsSuccessUpdatePopupOpen(true);
         } else {
           console.error("Gagal mengupdate data:", response.data);
         }
@@ -74,9 +80,9 @@ function Create () {
       }
     } else {
       const judulRegex = /^[a-zA-Z\s]+$/;
-      const deskripsiRegex = /^[a-zA-Z0-9\s]+$/;
+      const deskripsiRegex = /^[a-zA-Z0-9\s.,!?;:'"()-]*$/;
       const imageRegex = /^(https?:\/\/[^\s$.?#].[^\s]*)$/i;
-      const pemateriRegex = /^[A-Z][a-zA-Z\s]*$/;
+      const pemateriRegex = /^[A-Z][a-zA-Z\s.,;]*$/;
 
       const newFormErrors = {
         Judul: !judulRegex.test(formData.Judul),
@@ -118,11 +124,17 @@ function Create () {
   };
   
   const handleDeleteClick = async (id) => {
+    setSelectedProductToDelete(id);
+    setIsDeletePopupOpen(true);
+  };
+  const handleConfirmDelete = async () => {
     try {
-      const response = await axios.delete(`https://651d65a444e393af2d59b1a5.mockapi.io/webinar/${id}`);
+      const response = await axios.delete(`https://651d65a444e393af2d59b1a5.mockapi.io/webinar/${selectedProductToDelete}`);
       if (response.status === 200) {
-        const updatedProductList = productList.filter((product) => product.id !== id);
+        const updatedProductList = productList.filter((product) => product.id !== selectedProductToDelete);
         setProductList(updatedProductList);
+        setIsDeletePopupOpen(false);
+        setIsSuccessPopupOpen(true);
       } else {
         console.error("Gagal menghapus data:", response.data);
       }
@@ -158,26 +170,25 @@ function Create () {
     return (
         <div className="flex">
             <div className="flex flex-col bg-gray-300 w-80 p-4 h-screen">
-                <Link to="/event" className="flex items-center space-x-1 mt-24">
-                    <BiArrowBack className="w-12 h-8 text-gray-500"/>
-                    <span className="text-gray-500 text-2xl font-semibold">Balik ke Event</span>
-                </Link>
-                <Link to="/create" className="flex items-center space-x-1 mt-8">
-                    <BiFile className="w-12 h-8 text-gray-500"/>
-                    <span className="text-gray-500 text-2xl font-semibold">Create New Event</span>
-                </Link>
-                <Link to="/pendaftar" className="flex items-center space-x-1 mt-8">
-                    <FiUsers className="w-12 h-8 text-gray-500"/>
-                    <span className="text-gray-500 text-2xl font-semibold">Pendaftar</span>
-                </Link>
-                {isLoggedIn && (
-                  <Link to="/create" className="flex items-center space-x-1 mt-8">
-                    <BiArrowToLeft className="w-12 h-8 text-gray-500" />
-                    <span className="text-gray-500 text-2xl font-semibold" onClick={handleLogout}>Log out</span>
-                  </Link>
-                )}      
+              <div onClick={() => navigate("/event")} className="flex items-center space-x-1 mt-24 cursor-pointer">
+                <BiArrowBack className="w-12 h-8 text-gray-500" />
+                <span className="text-gray-500 text-2xl font-semibold">Balik ke Event</span>
+              </div>
+              <div onClick={() => navigate("/admin/create")} className="flex items-center space-x-1 mt-8 cursor-pointer">
+                <BiFile className="w-12 h-8 text-gray-500" />
+                <span className="text-gray-500 text-2xl font-semibold">Create New Event</span>
+              </div>
+              <div onClick={() => navigate("/admin/pendaftar")} className="flex items-center space-x-1 mt-8 cursor-pointer">
+                <FiUsers className="w-12 h-8 text-gray-500" />
+                <span className="text-gray-500 text-2xl font-semibold">Pendaftar</span>
+              </div>
+              {isLoggedIn && (
+                <div onClick={() => handleLogout()} className="flex items-center space-x-1 mt-8 cursor-pointer">
+                  <BiArrowToLeft className="w-12 h-8 text-gray-500" />
+                  <span className="text-gray-500 text-2xl font-semibold">Log out</span>
+                </div>
+              )}
             </div>
-
             <div className="container mx-auto p-5">
                 <div className="flex-1 p-4 mt-8">
                     <h3 className="text-3xl font-bold">Create New Webinar</h3>
@@ -219,7 +230,7 @@ function Create () {
                             />
                             {formErrors.Deskripsi && (
                             <p className="text-red-500">
-                                Deskripsi hanya boleh berisi huruf, angka, dan spasi
+                                Deskripsi hanya boleh berisi huruf, angka, spasi dan tanda baca
                             </p>
                             )}
                         </div>
@@ -285,7 +296,6 @@ function Create () {
                             </p>
                             )}
                         </div>
-                        
                         <button
                             type="submit"
                             className="bg-blue-500 px-4 py-2 mt-4 text-center font-bold text-white hover:bg-blue-700"
@@ -334,9 +344,49 @@ function Create () {
                         </tbody>
                     </table>
                 </div>
+                {isSuccessUpdatePopupOpen && (
+                  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
+                      <p className="mt-8">Data berhasil diperbarui!</p>
+                      <button
+                        onClick={() => setIsSuccessUpdatePopupOpen(false)}
+                        className="bg-blue-500 px-4 py-2 text-white rounded-full hover:bg-blue-700 mx-2 mt-4"
+                      >Tutup
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {isDeletePopupOpen && (
+                  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
+                      <p className="mt-4">Anda yakin ingin menghapus data?</p>
+                      <button
+                        onClick={handleConfirmDelete}
+                        className="bg-red-500 px-4 py-2 text-white rounded-full hover:bg-red-700 mx-2 mt-4"
+                      > Ya
+                      </button>
+                      <button
+                        onClick={() => setIsDeletePopupOpen(false)}
+                        className="bg-gray-500 px-4 py-2 text-white rounded-full hover:bg-gray-700 mx-2 mt-4"
+                      >Tidak
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {isSuccessPopupOpen && (
+                  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
+                      <p className="mt-8">Data berhasil dihapus!</p>
+                      <button
+                        onClick={() => setIsSuccessPopupOpen(false)}
+                        className="bg-blue-500 px-4 py-2 text-white rounded-full hover:bg-blue-700 mx-2 mt-4"
+                      >Tutup
+                      </button>
+                    </div>
+                  </div>
+                )}
             </div>
         </div>
-
     );
 }
 

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { BiUserCircle } from 'react-icons/bi';
 import { Configuration, OpenAIApi } from "openai";
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Faq = () => {
+    const navigate = useNavigate();
+    const navigateTo = (route) => {
+      navigate(route);
+    };
+
     const faqData = [
         {
           question: "Apa itu webinar?",
@@ -57,20 +62,20 @@ const Faq = () => {
 
   return (
     <>
-        <div className="container bg-white w-screen ">
-            <nav className="bg-cyan-600 w-screen rounded-md p-4">
-                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <ul className="flex flex-1 space-x-4 lg:flex mt-2">
-                    <li><Link to="/home" className="text-white font-bold text-2xl ">Home</Link></li>
-                    <li><Link to="/event" className="text-white font-bold text-2xl ">Event</Link></li>
-                    <li><Link to="/faq" className="text-white font-bold text-2xl ">FAQ</Link></li>
-                    <li><Link to="/about" className="text-white font-bold text-2xl ">About</Link></li>
-                    </ul>
-                    <div className="flex space-x-4 mr-4">
-                    <BiUserCircle className="w-12 h-12 rounded-full text-white"/>
-                    </div>
-                </div>
-            </nav>
+        <div className="bg-white w-screen">
+          <nav className="bg-cyan-600 w-full rounded-md p-4">
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <ul className="flex flex-1 lg:flex mt-2">
+                <li><button onClick={() => navigateTo("/home")} className="bg-cyan-600 text-white font-bold text-xl">Home</button></li>
+                <li><button onClick={() => navigateTo("/event")} className="bg-cyan-600 text-white font-bold text-xl">Event</button></li>
+                <li><button onClick={() => navigateTo("/faq")} className="bg-cyan-600 text-white font-bold text-xl">FAQ</button></li>
+                <li><button onClick={() => navigateTo("/about")} className="bg-cyan-600 text-white font-bold text-xl">About</button></li>
+              </ul>
+              <div className="flex space-x-4 mr-4">
+                <BiUserCircle className="w-12 h-12 rounded-full text-white" />
+              </div>
+            </div>
+          </nav>
         </div>
         <div className="items-center justify-center h-screen w-screen">
             <div className="max-w-3xl mx-auto p-4">

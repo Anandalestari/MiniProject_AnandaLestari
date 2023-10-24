@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { BiUserCircle } from 'react-icons/bi';
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function Daftar() {
+
+  const navigate = useNavigate();
+  const navigateTo = (route) => {
+    navigate(route);
+  };
+
+  const location = useLocation();
+  const Judul = location?.state.Judul
   const [formData, setFormData] = useState({
     Namalengkap: '',
     Email: '',
@@ -38,27 +46,27 @@ function Daftar() {
 
   return (
     <>
-      <div className="container bg-white w-screen ">
-        <nav className="bg-cyan-600 w-screen rounded-md p-4">
-        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <ul className="flex flex-1 space-x-4 lg:flex mt-2">
-            <li><Link to="/home" className="text-white font-bold text-2xl ">Home</Link></li>
-            <li><Link to="/event" className="text-white font-bold text-2xl ">Event</Link></li>
-            <li><Link to="/faq" className="text-white font-bold text-2xl ">FAQ</Link></li>
-            <li><Link to="/about" className="text-white font-bold text-2xl ">About</Link></li>
-          </ul>
-          <div className="flex space-x-4 mr-4">
-              <BiUserCircle className="w-12 h-12 rounded-full text-white"/>
-              </div>
-        </div>
+      <div className="bg-white w-screen">
+        <nav className="bg-cyan-600 w-full rounded-md p-4">
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <ul className="flex flex-1 lg:flex mt-2">
+              <li><button onClick={() => navigateTo("/home")} className="bg-cyan-600 text-white font-bold text-xl">Home</button></li>
+              <li><button onClick={() => navigateTo("/event")} className="bg-cyan-600 text-white font-bold text-xl">Event</button></li>
+              <li><button onClick={() => navigateTo("/faq")} className="bg-cyan-600 text-white font-bold text-xl">FAQ</button></li>
+              <li><button onClick={() => navigateTo("/about")} className="bg-cyan-600 text-white font-bold text-xl">About</button></li>
+            </ul>
+            <div className="flex space-x-4 mr-4">
+              <BiUserCircle className="w-12 h-12 rounded-full text-white" />
+            </div>
+          </div>
         </nav>
       </div>
       <div className="flex justify-center items-center h-screen ">
-        <div className="w-max rounded-md shadow-md p-5 ml-96">
+        <div className="w-max rounded-md shadow-md p-5">
           <div className="container mx-auto">
             <h3 className="text-3xl font-bold text-center">Daftar Webinar</h3>
             <p className="text-2xl text-center">
-              Isilah form data di bawah untuk menjadi peserta webinar
+              Isilah form data di bawah untuk menjadi peserta webinar ${Judul}
             </p>
           </div>
           <form id="Myform" onSubmit={handleSubmit}>
@@ -105,14 +113,6 @@ function Daftar() {
               >
                 Submit
               </button>
-              <Link to="/event">
-                <button
-                  type="button"
-                  className="bg-purple-600 hover-bg-purple-700 text-white text-xl font-bold py-2 px-6 rounded-full ml-4"
-                >
-                  Back
-                </button>
-              </Link>
             </div>
           </form>
         </div>

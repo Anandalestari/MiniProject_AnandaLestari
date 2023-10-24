@@ -1,22 +1,27 @@
 import React from "react";
 import { BiUserCircle } from 'react-icons/bi';
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function About () {
 
+    const navigate = useNavigate();
+    const navigateTo = (route) => {
+        navigate(route);
+    };
+
     return (
         <>
-            <div className=" bg-white min-w-screen ">
+           <div className="bg-white w-screen">
                 <nav className="bg-cyan-600 w-full rounded-md p-4">
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <ul className="flex flex-1 space-x-4 lg:flex mt-2">
-                            <li><Link to="/home" className="text-white font-bold text-2xl ">Home</Link></li>
-                            <li><Link to="/event" className="text-white font-bold text-2xl ">Event</Link></li>
-                            <li><Link to="/faq" className="text-white font-bold text-2xl ">FAQ</Link></li>
-                            <li><Link to="/about" className="text-white font-bold text-2xl ">About</Link></li>
+                        <ul className="flex flex-1 lg:flex mt-2">
+                        <li><button onClick={() => navigateTo("/home")} className="bg-cyan-600 text-white font-bold text-xl">Home</button></li>
+                        <li><button onClick={() => navigateTo("/event")} className="bg-cyan-600 text-white font-bold text-xl">Event</button></li>
+                        <li><button onClick={() => navigateTo("/faq")} className="bg-cyan-600 text-white font-bold text-xl">FAQ</button></li>
+                        <li><button onClick={() => navigateTo("/about")} className="bg-cyan-600 text-white font-bold text-xl">About</button></li>
                         </ul>
                         <div className="flex space-x-4 mr-4">
-                            <BiUserCircle className="w-12 h-12 rounded-full text-white"/>
+                        <BiUserCircle className="w-12 h-12 rounded-full text-white" />
                         </div>
                     </div>
                 </nav>

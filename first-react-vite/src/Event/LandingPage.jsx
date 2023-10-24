@@ -1,14 +1,21 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BiLogoInstagram, BiLogoTelegram, BiLogoWhatsapp, BiUserCircle } from 'react-icons/bi';
 import { AiOutlineUser } from 'react-icons/ai';
 
 const Landing = () => {
+  const navigate = useNavigate();
+  const navigateTo = (route) => {
+    navigate(route);
+  };
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
+  };
+  const handleLoginClick = () => {
+    navigate("/admin/login");
   };
 
   return (
@@ -16,11 +23,11 @@ const Landing = () => {
       <div className=" bg-white min-w-screen ">
         <nav className="bg-cyan-600 w-full rounded-md p-4">
           <div className="flex flex-1 items-center justify-center ">
-            <ul className="flex flex-1 space-x-4 lg:flex mt-2">
-              <li><Link to="/home" className="text-white font-bold text-2xl ">Home</Link></li>
-              <li><Link to="/event" className="text-white font-bold text-2xl ">Event</Link></li>
-              <li><Link to="/faq" className="text-white font-bold text-2xl ">FAQ</Link></li>
-              <li><Link to="/about" className="text-white font-bold text-2xl ">About</Link></li>
+            <ul className="flex flex-1 lg:flex mt-2">
+              <li><button onClick={() => navigateTo("/home")} className="bg-cyan-600 text-white font-bold text-xl">Home</button></li>
+              <li><button onClick={() => navigateTo("/event")} className="bg-cyan-600 text-white font-bold text-xl">Event</button></li>
+              <li><button onClick={() => navigateTo("/faq")} className="bg-cyan-600 text-white font-bold text-xl">FAQ</button></li>
+              <li><button onClick={() => navigateTo("/about")} className="bg-cyan-600 text-white font-bold text-xl">About</button></li>
             </ul>
             <div className="flex space-x-4 mr-4 relative">
               <BiUserCircle
@@ -30,11 +37,9 @@ const Landing = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 top-16 bg-white shadow-md px-4 py-2 w-48 h-10">
                   <ul className="flex items-center space-x-2">
-                    <li className="flex items-center space-x-2" >
-                      <Link to="/login" className="flex items-center space-x-1">
-                        <AiOutlineUser className="text-xl"/>
-                        <span className="text-lg font-semibold">Log in</span>
-                      </Link>
+                    <li className="flex items-center space-x-2" onClick={handleLoginClick}>
+                      <AiOutlineUser className="text-xl" />
+                      <span className="text-lg font-semibold">Log in</span>
                     </li>
                   </ul>
                 </div>
