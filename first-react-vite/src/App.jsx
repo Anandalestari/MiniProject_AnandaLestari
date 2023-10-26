@@ -1,13 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from './Event/LandingPage';
-import Event from './Event/Event';
-import Daftar from './Event/Daftar';
-import Faq from './Event/FAQ';
-import About from './Event/About';
-import Login from './Admin/Login';
-import Create from './Admin/Create';
-import Pendaftar from './Admin/Pendaftar'
+import Landing from './components/Landing/LandingPage';
+import Event from './components/Event/Event';
+import Daftar from './components/Event/Daftar';
+import Faq from './components/Event/FAQ';
+import About from './components/Event/About';
+import Login from './components/Admin/Login';
+import Create from './components/Admin/Create';
+import Pendaftar from './components/Admin/Pendaftar'
 
 function Routing() {
 
