@@ -24,7 +24,7 @@ const Header = () => {
                     <div className="flex flex-1 items-center justify-center ">
                         <ul className="flex flex-1 lg:flex mt-2">
                             <li><p className="text-2xl text-white font-bold ml-4 mt-2">Event Webinar</p></li>
-                            <li><button onClick={() => navigateTo("/home")} className="bg-cyan-600 text-white font-bold text-xl ml-4">Home</button></li>
+                            <li><button onClick={() => navigateTo("/")} className="bg-cyan-600 text-white font-bold text-xl ml-4">Home</button></li>
                             <li><button onClick={() => navigateTo("/event")} className="bg-cyan-600 text-white font-bold text-xl">Event</button></li>
                             <li><button onClick={() => navigateTo("/faq")} className="bg-cyan-600 text-white font-bold text-xl">FAQ</button></li>
                             <li><button onClick={() => navigateTo("/about")} className="bg-cyan-600 text-white font-bold text-xl">About</button></li>

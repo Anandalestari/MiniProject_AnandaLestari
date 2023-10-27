@@ -15,7 +15,7 @@ function Routing() {
     <Router>
       <div>
         <Routes>
-          <Route path="/home" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/event" exact element={<Event />} />
           <Route path="/daftar" exact element={<Daftar />} />
           <Route path="/faq" exact element={<Faq />} />
