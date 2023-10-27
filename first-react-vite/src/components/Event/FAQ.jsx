@@ -30,7 +30,7 @@ const Faq = () => {
     const [selected, setSelected] = useState(null);
 
     const configuration = new Configuration({
-      apiKey: import.meta.env.VITE_OPENAI_KEY,
+      apiKey: import.meta.env.VITE_OPENAPI_KEY,
     });
     const openai = new OpenAIApi(configuration);
   
