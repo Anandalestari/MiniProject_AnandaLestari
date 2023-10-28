@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { BiArrowBack, BiArrowToLeft, BiFile } from 'react-icons/bi';
-import { FiUsers } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../Admin/Navbar'
 
 function Create () {
   
-  const navigate = useNavigate();
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [selectedProductToDelete, setSelectedProductToDelete] = useState(null);
   const [isSuccessUpdatePopupOpen, setIsSuccessUpdatePopupOpen] = useState(false);
-
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/admin/login');
-    }
-  }, [isLoggedIn, navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    navigate('/admin/login'); 
-  };
   
   const [formData, setFormData] = useState({
     Judul: "",
@@ -169,26 +154,7 @@ function Create () {
 
     return (
         <div className="flex">
-            <div className="flex flex-col bg-gray-300 w-80 p-4 h-screen">
-              <div onClick={() => navigate("/event")} className="flex items-center space-x-1 mt-24 cursor-pointer">
-                <BiArrowBack className="w-12 h-8 text-gray-500" />
-                <span className="text-gray-500 text-2xl font-semibold">Balik ke Event</span>
-              </div>
-              <div onClick={() => navigate("/admin/create")} className="flex items-center space-x-1 mt-8 cursor-pointer">
-                <BiFile className="w-12 h-8 text-gray-500" />
-                <span className="text-gray-500 text-2xl font-semibold">Create New Event</span>
-              </div>
-              <div onClick={() => navigate("/admin/pendaftar")} className="flex items-center space-x-1 mt-8 cursor-pointer">
-                <FiUsers className="w-12 h-8 text-gray-500" />
-                <span className="text-gray-500 text-2xl font-semibold">Pendaftar</span>
-              </div>
-              {isLoggedIn && (
-                <div onClick={() => handleLogout()} className="flex items-center space-x-1 mt-8 cursor-pointer">
-                  <BiArrowToLeft className="w-12 h-8 text-gray-500" />
-                  <span className="text-gray-500 text-2xl font-semibold">Log out</span>
-                </div>
-              )}
-            </div>
+            <Navbar />
             <div className="container mx-auto p-5">
                 <div className="flex-1 p-4 mt-8">
                     <h3 className="text-3xl font-bold">Create New Webinar</h3>
@@ -206,8 +172,7 @@ function Create () {
                             }`}
                             value={formData.Judul}
                             onChange={handleInputChange}
-                            />
-                            {formErrors.Judul && (
+                            />{formErrors.Judul && (
                             <p className="text-red-500">
                                 Judul Webinar hanya boleh berisi huruf dan spasi
                             </p>
@@ -227,8 +192,7 @@ function Create () {
                             }`}
                             value={formData.Deskripsi}
                             onChange={handleInputChange}
-                            />
-                            {formErrors.Deskripsi && (
+                            />{formErrors.Deskripsi && (
                             <p className="text-red-500">
                                 Deskripsi hanya boleh berisi huruf, angka, spasi dan tanda baca
                             </p>
@@ -247,8 +211,7 @@ function Create () {
                             }`}
                             value={formData.Pemateri}
                             onChange={handleInputChange}
-                            />
-                            {formErrors.Pemateri && (
+                            />{formErrors.Pemateri && (
                             <p className="text-red-500">
                                 Awali dengan huruf kapital dan tidak berisi angka
                             </p>
@@ -269,8 +232,7 @@ function Create () {
                             }`}
                             value={formData.Tanggal}
                             onChange={handleInputChange}
-                            />
-                            {formErrors.Tanggal && (
+                            />{formErrors.Tanggal && (
                             <p className="text-red-500">
                                 Tolong isi tanggal dengan benar
                             </p>
@@ -289,8 +251,7 @@ function Create () {
                             }`}
                             value={formData.image}
                             onChange={handleInputChange}
-                            />
-                            {formErrors.image && (
+                            />{formErrors.image && (
                             <p className="text-red-500">
                                 Tolong isi dengan link image webinar
                             </p>
@@ -299,8 +260,7 @@ function Create () {
                         <button
                             type="submit"
                             className="bg-blue-500 px-4 py-2 mt-4 text-center font-bold text-white hover:bg-blue-700"
-                        >
-                            {isEditing ? "Update" : "Submit"}
+                        >{isEditing ? "Update" : "Submit"}
                         </button>
                     </form>
                 </div>
@@ -389,5 +349,4 @@ function Create () {
         </div>
     );
 }
-
 export default Create;
