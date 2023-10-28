@@ -4,6 +4,7 @@ import Navbar from '../Admin/Navbar'
 
 function Create () {
   
+  const [isSuccessAddPopupOpen, setIsSuccessAddPopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [selectedProductToDelete, setSelectedProductToDelete] = useState(null);
@@ -98,6 +99,7 @@ function Create () {
               Pemateri: "",
               Tanggal: "",
             });
+            setIsSuccessAddPopupOpen(true);
           } else {
             console.error("Gagal menambahkan data:", response.data);
           }
@@ -304,6 +306,19 @@ function Create () {
                         </tbody>
                     </table>
                 </div>
+                {isSuccessAddPopupOpen && (
+                  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
+                      <p className="mt-8">Data berhasil ditambahkan!</p>
+                      <button
+                        onClick={() => setIsSuccessAddPopupOpen(false)}
+                        className="bg-blue-500 px-4 py-2 text-white rounded-full hover-bg-blue-700 mx-2 mt-4"
+                      >
+                        Tutup
+                      </button>
+                    </div>
+                  </div>
+                )}
                 {isSuccessUpdatePopupOpen && (
                   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
