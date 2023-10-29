@@ -7,7 +7,7 @@ function Footer (){
             <footer className="bg-cyan-600 w-full  ">
                 <div className="grid grid-cols-1 md:grid-cols-3 mt-56 border-b border-gray-300 py-4 mx-24">
                 <div className="p-4">
-                    <h3 className="text-3xl text-white font-bold ml-60 mt-14">Event Webinar</h3>
+                    <h3 className="text-3xl text-white font-bold ml-48 mt-14">Event Webinar</h3>
                 </div>
                 <div className="p-4 ml-32 mt-4">
                     <h3 className="text-2xl text-white font-bold">Social Media</h3>
