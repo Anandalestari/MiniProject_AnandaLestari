@@ -34,7 +34,7 @@ function Footer (){
                 </div>
             </footer>
             <div className="bg-cyan-600 w-full text-white py-6 text-center">
-                <p className="text-2xl font-bold">&copy; {new Date().getFullYear()} Copyright Event Webinar. All Rights Reserved</p>
+                <p className="text-xl font-bold">&copy; {new Date().getFullYear()} Copyright Event Webinar. All Rights Reserved</p>
             </div>
         </>
     );
