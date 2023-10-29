@@ -43,7 +43,7 @@ const Card = ({ item, onClick }) => {
           <div className="bg-white p-4 rounded-lg " style={{ width: '600px', height: '250px' }}>
             <p className="text-xl font-semibold mb-2">{item.Deskripsi}</p>
             <button
-              className="text-white bg-blue-500 hover:bg-blue-600"
+              className="text-white bg-red-500 hover:bg-red-600"
               onClick={closePopup}
             >
               Close

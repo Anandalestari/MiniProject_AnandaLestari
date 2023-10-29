@@ -21,7 +21,7 @@ function Pendaftar () {
         <div className="flex">
             <Navbar />
             <div className="flex-1 p-4 mt-8">
-                <h3 className="text-4xl font-bold mb-4">List Webinar</h3>
+                <h3 className="text-4xl font-bold mb-4">List Pendaftar</h3>
                 <table className="w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
@@ -29,6 +29,7 @@ function Pendaftar () {
                         <th className="p-2 text-xl border border-gray-300">Nama Lengkap</th>
                         <th className="p-2 text-xl border border-gray-300">Email</th>
                         <th className="p-2 text-xl border border-gray-300">No.HP</th>
+                        <th className="p-2 text-xl border border-gray-300">Webinar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,7 @@ function Pendaftar () {
                             <td className="p-2 text-xl border border-gray-300">{product.Namalengkap}</td>
                             <td className="p-2 text-xl border border-gray-300">{product.Email}</td>
                             <td className="p-2 text-xl border border-gray-300">{product.Nohp}</td>
+                            <td className="p-2 text-xl border border-gray-300">{product.Judul}</td>
                         </tr>
                         ))}
                     </tbody>

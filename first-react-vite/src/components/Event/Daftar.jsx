@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function Daftar() {
 
+  const [isSuccessAddPopupOpen, setIsSuccessAddPopupOpen] = useState(false);
   const location = useLocation();
   const Judul = location?.state.Judul
   const [formData, setFormData] = useState({
@@ -25,15 +26,19 @@ function Daftar() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://651d65a444e393af2d59b1a5.mockapi.io/daftar', formData);
+      const dataToSubmit = {
+        ...formData, 
+        Judul: Judul, 
+      };
+      const response = await axios.post('https://651d65a444e393af2d59b1a5.mockapi.io/daftar', dataToSubmit);
       console.log("Data berhasil ditambahkan:", response.data);
 
-      // Setel ulang formulir untuk mengosongkannya
       setFormData({
         Namalengkap: '',
         Email: '',
         Nohp: '',
       });
+      setIsSuccessAddPopupOpen(true);
     } catch (error) {
       console.error('Gagal menambahkan data:', error);
     }
@@ -91,16 +96,25 @@ function Daftar() {
               <button
                 type="submit"
                 className="bg-purple-600 hover-bg-purple-700 text-white text-xl font-bold py-2 px-6 rounded-full"
-              >
-                Submit
+              >Submit
               </button>
             </div>
           </form>
         </div>
-      </div>    
-      
+        {isSuccessAddPopupOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '300px', height: '200px' }}>
+              <p className="mt-8 text-xl font-bold">Terimakasih telah mendaftar webinar ini</p>
+              <button
+                onClick={() => setIsSuccessAddPopupOpen(false)}
+                className="bg-blue-500 px-4 py-2 text-white rounded-full hover-bg-blue-700 mx-2 mt-4"
+              > Tutup
+              </button>
+            </div>
+          </div>
+        )}
+      </div>  
     </>
   );
 }
-
 export default Daftar;

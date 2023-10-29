@@ -308,24 +308,23 @@ function Create () {
                 </div>
                 {isSuccessAddPopupOpen && (
                   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
-                      <p className="mt-8">Data berhasil ditambahkan!</p>
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '300px', height: '200px' }}>
+                      <p className="mt-8 text-xl">Data berhasil ditambahkan!</p>
                       <button
                         onClick={() => setIsSuccessAddPopupOpen(false)}
                         className="bg-blue-500 px-4 py-2 text-white rounded-full hover-bg-blue-700 mx-2 mt-4"
-                      >
-                        Tutup
+                      >Tutup
                       </button>
                     </div>
                   </div>
                 )}
                 {isSuccessUpdatePopupOpen && (
                   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
-                      <p className="mt-8">Data berhasil diperbarui!</p>
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '300px', height: '200px' }}>
+                      <p className="mt-12 text-xl">Data berhasil diperbarui!</p>
                       <button
                         onClick={() => setIsSuccessUpdatePopupOpen(false)}
-                        className="bg-blue-500 px-4 py-2 text-white rounded-full hover:bg-blue-700 mx-2 mt-4"
+                        className="bg-blue-500 px-4 py-2 text-white text-xl rounded-full hover:bg-blue-700 mx-2 mt-4"
                       >Tutup
                       </button>
                     </div>
@@ -333,16 +332,16 @@ function Create () {
                 )}
                 {isDeletePopupOpen && (
                   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
-                      <p className="mt-4">Anda yakin ingin menghapus data?</p>
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '300px', height: '200px' }}>
+                      <p className="mt-12 text-xl">Anda yakin ingin menghapus data?</p>
                       <button
                         onClick={handleConfirmDelete}
-                        className="bg-red-500 px-4 py-2 text-white rounded-full hover:bg-red-700 mx-2 mt-4"
+                        className="bg-blue-500 px-4 py-2 text-white text-xl rounded-full hover:bg-blue-700 mx-2 mt-4"
                       > Ya
                       </button>
                       <button
                         onClick={() => setIsDeletePopupOpen(false)}
-                        className="bg-gray-500 px-4 py-2 text-white rounded-full hover:bg-gray-700 mx-2 mt-4"
+                        className="bg-red-500 px-4 py-2 text-white text-xl rounded-full hover:bg-red-700 mx-2 mt-4"
                       >Tidak
                       </button>
                     </div>
@@ -350,11 +349,11 @@ function Create () {
                 )}
                 {isSuccessPopupOpen && (
                   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '250px', height: '150px' }}>
-                      <p className="mt-8">Data berhasil dihapus!</p>
+                    <div className="bg-white p-4 rounded shadow-lg text-center" style={{ width: '300px', height: '200px' }}>
+                      <p className="mt-12 text-xl">Data berhasil dihapus!</p>
                       <button
                         onClick={() => setIsSuccessPopupOpen(false)}
-                        className="bg-blue-500 px-4 py-2 text-white rounded-full hover:bg-blue-700 mx-2 mt-4"
+                        className="bg-blue-500 px-4 py-2 text-white text-xl rounded-full hover:bg-blue-700 mx-2 mt-4"
                       >Tutup
                       </button>
                     </div>
