@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <>
             <div className=" bg-white min-w-screen ">
-                <nav className="bg-cyan-600 w-screen rounded-md p-4">
+                <nav className="bg-cyan-600 w-screen rounded-md p-2">
                     <div className="flex flex-1 items-center justify-center ">
                         <ul className="flex flex-1 lg:flex mt-2">
                             <li><p className="text-2xl text-white font-bold ml-4 mt-2">Event Webinar</p></li>
