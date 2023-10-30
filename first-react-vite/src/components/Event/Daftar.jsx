@@ -95,7 +95,7 @@ function Daftar() {
             <div className="mt-4">
               <button
                 type="submit"
-                className="bg-purple-600 hover-bg-purple-700 text-white text-xl font-bold py-2 px-6 rounded-full"
+                className="bg-blue-500 hover-bg-blue-700 text-white text-xl font-bold py-2 px-6 rounded-full"
               >Submit
               </button>
             </div>
