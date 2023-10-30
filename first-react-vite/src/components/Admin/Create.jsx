@@ -157,7 +157,7 @@ function Create () {
     return (
         <div className="flex">
             <Navbar />
-            <div className="container mx-auto p-5">
+            <div className="container mx-auto p-5" style={{ overflowY: 'auto', height: '100vh' }}>
                 <div className="flex-1 p-4 mt-8">
                     <h3 className="text-3xl font-bold">Create New Webinar</h3>
                     <form onSubmit={handleSubmit}>
