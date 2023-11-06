@@ -25,13 +25,13 @@ const Card = ({ item, onClick }) => {
         </div>
         <div className="flex justify-between items-center mb-4">
           <button
-            className="text-white bg-blue-500 hover:bg-blue-600 focus:outline-none border-none mx-2"
+            className="text-white bg-blue-500 hover:bg-blue-600 rounded-full focus:outline-none border-none py-2 px-4 mx-2"
             onClick={openPopup}
           >
             Read More
           </button>
           <button
-            className="text-white bg-blue-500 hover:bg-blue-600 focus:outline-none border-none mx-2"
+            className="text-white bg-blue-500 hover:bg-blue-600 rounded-full focus:outline-none border-none py-2 px-4 mx-2"
             onClick={onClick}
           >
             Daftar
@@ -43,7 +43,7 @@ const Card = ({ item, onClick }) => {
           <div className="bg-white p-4 rounded-lg " style={{ width: '600px', height: '250px' }}>
             <p className="text-xl font-semibold mb-2">{item.Deskripsi}</p>
             <button
-              className="text-white bg-red-500 hover:bg-red-600"
+              className="text-white bg-red-500 hover:bg-red-600 rounded-full py-2 px-4 mx-2"
               onClick={closePopup}
             >
               Close

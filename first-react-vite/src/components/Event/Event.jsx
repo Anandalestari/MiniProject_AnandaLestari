@@ -26,12 +26,11 @@ function Event() {
    
   return (
     <>
-      <div className="w-screen">
-        <Header />
-      </div>
+      <Header />
       <div className="h-screen">
+        <div className="container">
           <h2 className="text-4xl text-black font-bold text-center mt-14 mb-14 ml-14 mr-14 ">List Event</h2>
-          <div className="flex flex-wrap ml-10">
+          <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
           {productList.map((item) => (
               <Card
               key={item.id}
@@ -43,7 +42,9 @@ function Event() {
               })}
               />
           ))}
-          </div>            
+          </div>  
+        </div>
+                    
       </div>
     </>
   );

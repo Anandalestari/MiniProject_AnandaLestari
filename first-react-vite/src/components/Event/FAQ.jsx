@@ -57,7 +57,8 @@ const Faq = () => {
   return (
     <>
         <Header />
-        <div className="items-center justify-center h-screen w-screen">
+        <div className="items-center justify-center h-screen">
+          <div className="container">
             <div className="max-w-3xl mx-auto p-4">
                 <h1 className="text-3xl font-semibold text-center mt-24 mb-14">Frequently asked questions</h1>
                 {faqData.map((faq, index) => (
@@ -84,7 +85,7 @@ const Faq = () => {
                   <button
                     onClick={handleClick}
                     disabled={loading || prompt.length === 0}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full py-2 m-2"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full py-2 px-4 m-8"
                   >
                     {loading ? "Loading..." : "Submit"}
                   </button>
@@ -97,8 +98,8 @@ const Faq = () => {
                   >{result}</textarea>          
                 </div>
             </div>
+          </div>  
         </div>
-
     </>
     
   );
